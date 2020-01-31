@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="methodsA()">++++</button>
+    </div>
+</body>
+<script>
+    /**
+        混入是一种分发vue组件中可复用功能的非常灵活的方式。
+        混入对象可以包含任意组建选项。
+        当组建使用混入对象时，所有的混入对象的选项将被混入该组件本省的选项。
+    */
+    function conplexMethods(){
+        console.log('123')
+        return ['111','222','3333']
+    }
+
+    var obj = {
+        methods:{
+            methodsA(){
+                console.log('a')
+            },
+            methodsB(){
+                console.log('b')
+            }
+        }
+    }
+    new Vue({
+        el:"#app",
+        data:{
+            name:'ananiah mixins'
+        },
+        methods:{
+            mymethods:conplexMethods,
+            mymethodsA:obj.methods.methodsA,
+            methodsA(){
+                console.log('aaa')
+            }
+        },
+        //混入obj对象
+        mixins:[obj]
+    })
+</script>
+</html>

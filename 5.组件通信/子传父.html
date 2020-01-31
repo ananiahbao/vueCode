@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{text}}</p>
+        <child @myevent="handleEvent"></child>
+    </div>
+</body>
+<script>
+    //子组件
+    Vue.component('child',{
+        template:`
+            <div>
+                child
+                <button @click="handelClick">click</button>
+            </div>
+        `,
+        methods:{
+            handelClick(){
+                //同时父组件
+                this.$emit("myevent",1000000);
+                setInterval(()=>{
+                    this.$emit("myevent",1000000);
+                },1000)
+            }
+        }
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            text:'yyy'
+        },
+        methods:{
+            handleEvent(data){
+                console.log("等待子组件传来的状态",data)
+                this.text = ' 给父组件打钱'
+            }
+        }
+    })
+</script>
+</html>
+
+

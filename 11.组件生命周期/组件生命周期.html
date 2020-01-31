@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child @myenevt="ishow()"></child>
+        <sildbar v-if="isCreated"></sildbar>
+    </div>
+</body>
+<script>
+    Vue.component('sildbar',{
+        template:`
+            <div>
+                sildbar
+                <ul>
+                    <li>111111</li>
+                    <li>222222</li>
+                    <li>{{count}}</li>
+                </ul>
+            </div>
+        `,
+        data(){
+            return{
+                count:0
+            }
+        },
+        beforeCreate(){
+            console.log('beforeCreate')
+        },
+        created(){
+            console.log('created')
+        },
+        beforeMount(){
+            console.log('beforeMount')
+        },
+        mounted(){
+            var ss = setInterval(()=>{
+                this.count++
+            },1000)
+            console.log('mounted',"访问dom，setInterval,window.onscroll,监听事件，ajax")
+        },
+        beforeUpdate(){
+            console.log('beforeUpdate')
+        },
+        updated(){
+            console.log('updated',"更新之后可以访问dom")
+        },
+        beforeDestroy(){
+            console.log('beforeDestroy')
+        },
+        destroyed(){
+            // clearInterval(ss)
+            console.log('destoryed--clearInterval,window.onscroll=null,$off')
+        }
+    })
+    Vue.component('child',{
+        template:`
+            <div>
+                child -- {{title}}
+                {{count}}
+                <button @click="handelclick()">click</button>
+            </div>
+        `,
+        data(){
+            return{
+                title:"0000",
+                datalist:[],
+                count:0
+            }
+        },
+        methods:{
+            handelclick(){
+                this.$emit("myenevt")
+            }
+        },
+        
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            isCreated:true
+        },
+        methods:{
+            ishow(){
+                this.isCreated = !this.isCreated
+            }
+        }
+    })
+</script>
+</html>

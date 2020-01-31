@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child1></child1>
+        <child2></child2>
+    </div>
+</body>
+<script>
+    /**
+        类似于发布者订阅者模式
+        发布者：$emit
+        订阅者: $on
+    */
+    var bus = new Vue(); //中央事件总线
+    Vue.component('child1',{
+        template:`
+            <div>child1
+                <button @click="handleClick()">click</button>
+            </div>
+        `,
+        methods:{
+            handleClick(){
+                bus.$emit('ananiah',"true")
+            }
+        }
+    })
+    Vue.component('child2',{
+        template:`
+            <div>child2
+                <p v-show="isShow">1111111111</p>
+            </div>
+        `,
+        data(){
+           return {
+                isShow:false
+           }
+        },
+        mounted(){
+            // console.log( bus.$on('ananiah'))
+            bus.$on('ananiah',val => {
+                console.log('接受的消息',val)
+                this.isShow = !this.isShow
+            })
+        }
+    }) //提前监听事件ananiah
+    new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</html>

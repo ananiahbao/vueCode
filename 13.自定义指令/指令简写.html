@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-hello="'green'">11111</div>
+        <div v-hello="color">11111</div>
+    </div>
+</body>
+<script>
+    /**
+        （1）自定义指令介绍directives
+        （2）钩子函数
+            ×参数el,binging,vnode(vnode.context)
+            *bind inserted update componentUpdated unbind(生命周期)
+        （3）函数简写
+        （4）自定义指令-轮播
+            ×inserted插入最后一个元素时调用（vnode.context.datalist.length-1）
+            *this.$nextTick()
+    */
+    Vue.directive("hello",(el,bind)=>{
+        el.style.background=bind.value
+        console.log('此元素已经插入到父节点中',bind)
+    })
+  var vm =  new Vue({
+        el:"#app",
+        data:{
+            title:"111111111",
+            color:'red'
+        }
+    })
+</script>
+</html>

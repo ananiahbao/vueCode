@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>{{title}}</p>
+        <img :src="dataimg | ananiah" alt="">
+        <p>src:{{dataimg}}</p>
+        <button @click='handle()'>+</button>
+    </div>
+</body>
+<script>
+    // 定义过滤器
+    Vue.filter('ananiah',(val)=>{
+        return val.replace('w.h','128.160')
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            title:'sssw.hsss',
+            dataimg:'http://www.baidu.com/w.h/111.png'
+        },
+        methods:{
+            handle(){
+                this.title = this.title.replace('w.h','11111111') 
+            }
+        }
+    })
+</script>
+</html>

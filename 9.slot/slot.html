@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <swiper>
+            <ul>
+                <li>111</li>
+                <li>222</li>
+                <li>333</li>
+            </ul>
+        </swiper>
+        <hello>
+            <div slot="a">11111111111</div>
+            <div slot="b">22222222222</div>
+            <div slot="c">33333333333</div>
+        </hello>
+    </div>
+</body>
+<script>
+    /**
+        slot插槽（内容分发）
+            a.单个slot
+            b.具名slot
+                ×混合父组件的内容与子组件自己的模板-->内容分发
+                ×父组件模板的内容在父组件作用域内编译，子组件模板的内容在子组件作用域内编译
+    */
+    // 单个插槽
+    Vue.component('swiper',{
+        template:`
+            <div>
+                <slot></slot> 
+            </div>
+        `
+    })
+    //具名插槽
+    Vue.component('hello',{
+        template:`
+            <div>
+               
+                <div>第一部分
+                    <slot name="a"></slot> </div>
+                <hr>
+                <div>第二部分<slot name="b"></slot></div>
+                <hr>
+                <div>第三部分<slot name="c"></slot></div>
+                <hr>
+            </div>
+        `
+    })
+    
+    new Vue({
+        el:"#app",
+        data:{
+
+        }
+    })
+</script>
+</html>

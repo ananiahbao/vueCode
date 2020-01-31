@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <navbar myname="首页" :word="text" :myshow="false"></navbar>
+        <navbar myname="列表页" :word="text" :myshow="true"></navbar>
+        <navbar myname="购物页" :word="text" :myshow="true"></navbar>
+    </div>
+</body>
+<script>
+    /**
+        组建注册本质：扩展html元素，封装可重用的代码
+        a.全局组建
+            Vue.component
+        b.局部组建
+        组建编写方式与vue实例的区别：
+            自定义组件需呀一个 root element
+            父子组件的data是无法共享
+            组件可以有data，methods，computed，但是data必须是一个函数
+    */
+    /**
+        1.父子组件传值（props down,event up）
+        2.属性验证
+            props:{name:Number}
+            Number,String,Boolean,Array,Object,Function,null(不限类型)
+        3.事件机制
+            3.1.使用$on(eventName)监听事件
+            3.2.使用$emit(eventName)触发事件
+        4.Ref
+            <input ref="mytext" /> this.$refs.mytext
+        5.事件总线
+            var bus = new Vue();
+            *mounted生命周期中进行监听
+    */
+        Vue.component('navbar',{
+            template:`
+                <nav>
+                    <button @click="handleBack()">返回</button>
+                    <span>{{title}} - {{ myname }}</span>
+                    <button v-show="myshow">主页</button>
+                    <p>{{word}}</p>
+                </nav>`, //描述组建的dom结构
+            // props:["myname","word","myshow"], //通过props接收myname的参数
+            //属性验证
+            props:{
+                myname:String,
+                word:String,
+                myshow:Boolean
+            },
+            //函数式写法 必须有返回值 保证每个组建都是单独的 放在函数中限定了参数的作用域
+            data(){
+                return{
+                    title:"因原因"
+                 }
+            },
+            methods:{
+                handleBack(){
+                    console.log('back')
+                }
+            }
+        })
+    new Vue({
+        el:'#app',
+        data:{
+            text:"来自父亲的叮嘱"
+        }
+    })
+</script>
+</html>

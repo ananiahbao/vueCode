@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{ myname.substring(0,1).toUpperCase() + myname.substring(1) }}
+        <br>
+        {{ myname }}
+        <br>
+        {{ changeWordsmethods() }}
+        <br>
+        {{ changewords }}
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+            el: "#app",
+            data:{
+                myname:'ananiah'
+            },
+            methods:{
+                changeWordsmethods(){
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1) 
+                }
+            },
+            computed:{
+                changewords(){
+                    return this.myname.substring(0,1).toUpperCase() + this.myname.substring(1)
+                }
+            }
+            })
+</script>
+</html>

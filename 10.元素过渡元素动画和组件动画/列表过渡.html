@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<style>
+    /* 关键桢动画 */
+    .bounce-enter-active{
+        animation: bounce-in .5s;
+    }
+    .bounce-leave-active{
+        animation: bounce-in .5s reverse;
+    }
+    @keyframes bounce-in {
+        0%{
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        100%{
+            opacity: 1;
+            transform: translateX(0px);
+        }
+    }
+</style>
+<body>
+    <div id="app">
+        <input type="text" v-model="mytext" />
+
+        <button @click="handelAdd()">click</button>
+        <!-- <ul> -->
+            <!-- transition-group会默认渲染span标签 可以在tag属性中自定义想要的标签 transition不会渲染任何标签 -->
+            <transition-group tag="ul" name="bounce" mode="out-in">
+                <li v-for="(data,index) in datalist" :key="data">
+                    {{data}} - {{ index }} -- <button @click="handeldel(index)">del</button>
+                </li> 
+            </transition-group>
+           
+        <!-- </ul> -->
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            datalist:[],
+            mytext:"哦我是初始值"
+        },
+        methods:{
+            handelAdd(){
+                this.datalist.push(this.mytext)
+            },
+            handeldel(index){
+                console.log(index)
+                this.datalist.splice(index,1)
+            }
+        }
+    })
+</script>
+</html>

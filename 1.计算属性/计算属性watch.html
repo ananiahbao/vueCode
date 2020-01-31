@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>单价：<input type="text" v-model="price"></p>
+        <p>数量：<input type="text" v-model="number"></p>
+        <p>计算金额：{{sum}}</p>
+    </div>
+</body>
+<script>
+var vm  = new Vue({
+    el:"#app",
+    data:{
+        price:100,
+        number:1,
+        sum:0
+    },
+    //监听某一个值或者状态发生变化 变化就会触发watch 
+    watch:{
+        // 监听的参数的名字要一致
+        price(){
+            console.log(this.price)
+            if(this.price*this.number < 1000 && this.price*this.number > 0){
+                this.sum = this.price*this.number + 100
+            }else{
+                this.sum = this.price*this.number
+            }
+        },
+        number(){
+            console.log(this.price)
+            if(this.price*this.number < 1000 && this.price*this.number > 0){
+                this.sum = this.price*this.number + 100
+            }else{
+                this.sum = this.price*this.number
+            }
+        }
+    }
+})
+</script>
+</html>

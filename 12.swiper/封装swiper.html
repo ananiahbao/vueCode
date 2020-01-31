@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./dist/swiper.min.css">
+    <script src="../vue.js"></script>
+    <script src="./dist/swiper.min.js"></script>
+    <script src="./dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <swiper :key="datalist.length">
+            <div class="swiper-slide" v-for="data in datalist" :key="data">{{data}}</div>
+            
+        </swiper>
+    </div>
+</body>
+<script>
+    Vue.component('swiper',{
+        template:`
+        <div class="swiper-container ananiah">
+            <div class="swiper-wrapper">
+                <slot></slot>
+            </div>
+            <div class="swiper-pagination">
+
+            </div>
+        </div>
+        `,
+        updated(){
+            console.log(document.querySelectorAll('.swiper-slide'))
+            new Swiper('.ananiah',{
+                loop:true,
+                pagination:{
+                    el:'.wiper-pagination'
+                }
+            })
+        }
+    })
+    new Vue({
+        el:"#app",
+        data:{
+            datalist:[]
+        },
+        mounted(){
+            // setTimeout(()=>{
+            //     this.datalist=['1111','2222','3333']
+            // },1000)
+            axios({
+                url:"https://m.maizuo.com/gateway?cityId=440100&pageNum=1&pageSize=10&type=2&k=9848315",
+                headers:{
+                    'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"15804459904127463571656"}',
+                    'X-Host': 'mall.cfg.film-float.banner'
+                }
+            }).then(res=>{
+                console.log(res)
+                this.datalist=res.data.data
+            })
+        }
+    })
+</script>
+</html>

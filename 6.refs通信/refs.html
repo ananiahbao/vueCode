@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" ref="text">
+        <button @click="handleCLick()">click</button>
+        <child ref="component"></child>
+    </div>
+</body>
+<script>
+    /**
+        1.ref绑定在普通的标签上，拿到的是原生节点。
+        2.ref绑定在组件上，拿到的是组件对象。
+    */
+    Vue.component('child',{
+        template:`
+            <div>
+                {{ title }}
+            </div>
+        `,
+        data(){
+            return {
+                title:'child title'
+            }
+        },
+        methods:{
+            getValue(data){
+                this.title = data
+                console.log('value',data)
+            }
+        }
+    })
+    new Vue({
+        el: "#app",
+        data:{
+
+        },
+        methods:{
+            handleCLick(){
+                console.log(this.$refs.component.title)
+                this.$refs.component.getValue(this.$refs.text.value)
+            }
+        }
+    })
+</script>
+</html>

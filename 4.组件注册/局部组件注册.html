@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <navbar></navbar>
+    </div>
+</body>
+<script>
+    /**
+        组建注册本质：扩展html元素，封装可重用的代码
+        a.全局组建
+            Vue.component
+        b.局部组建
+        组建编写方式与vue实例的区别：
+            自定义组件需呀一个 root element
+            父子组件的data是无法共享
+            组件可以有data，methods，computed，但是data必须是一个函数
+    */
+        Vue.component('navbar',{
+            template:`
+                <nav>
+                    <button @click="handleBack()">返回</button>
+                    <span>{{title}} - 标题</span>
+                    <button>主页</button>
+                    <ul>
+                        <li>11111111</li>
+                    </ul>
+                    <navbarchild></navbarchild>
+                </nav>`, //描述组建的dom结构
+            //函数式写法 必须有返回值 保证每个组建都是单独的 放在函数中限定了参数的作用域
+            data(){
+                return{
+                    title:"因原因"
+                 }
+            },
+            //定义局部组件
+            components:{
+                navbarchild:{
+                    template:`
+                        <div>navbarhild-child</div>
+                    `
+                }
+            },
+            methods:{
+                handleBack(){
+                    console.log('back')
+                }
+            }
+        })
+    new Vue({
+        el:'#app',
+        data:{
+
+        }
+    })
+</script>
+</html>

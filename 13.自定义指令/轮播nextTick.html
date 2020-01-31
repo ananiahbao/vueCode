@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../12.swiper/dist/swiper.min.css">
+    <script src="../12.swiper/dist/swiper.min.js"></script>
+    <script src="../vue.js"></script>
+</head>
+<body>
+        <div id="app">
+            <div class="swiper-container ananiah">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="(data,index) in list" :key="data" >
+                        {{data}}
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+</body>
+<script>
+    
+    new Vue({
+        el:"#app",
+        data:{
+            list:[]
+        },
+        mounted(){
+            setTimeout(()=>{
+                this.list = ['111','2222','3333']
+                console.log("节点创建完了？",'没有异步渲染')
+
+                this.$nextTick(()=>{
+                    console.log('nextTick')
+                    new Swiper('.ananiah',{
+                        loop:true,
+                        pagination:{
+                            el:'.swiper-pagination'
+                        }
+                    })
+                })
+            },2000)
+        },
+        updated(){
+            console.log('updated')
+        }
+    })
+</script>
+</html>
