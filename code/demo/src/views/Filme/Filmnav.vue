@@ -9,5 +9,15 @@
 <style lang="scss" scoped>
 .active{
     color: red;
+    border-bottom: 1px solid red;
+}
+ul {
+    display: flex;
+    li{
+        flex: 1;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+    }
 }
 </style>

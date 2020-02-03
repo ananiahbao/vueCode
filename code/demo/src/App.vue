@@ -21,11 +21,14 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+    *{
+        padding: 0;
+        margin: 0;
+    }
     ul{
         li {
             list-style: none;
-            background: yellow
         }
     }
 </style>

@@ -57,20 +57,20 @@ const router = new Router({
 })
 
 // 全局路由守卫或拦截
-const user = {
-    islogin () {
-        return false
-    }
-}
-router.beforeEach((to, from, next) => {
-    if (to.path === '/center') {
-        if (user.islogin()) {
-            next()
-        } else {
-            next('/center')
-        }
-    } else {
-        next()
-    }
-})
+// const user = {
+//     islogin () {
+//         return false
+//     }
+// }
+// router.beforeEach((to, from, next) => {
+//     if (to.path === '/center') {
+//         if (user.islogin()) {
+//             next()
+//         } else {
+//             next('/center')
+//         }
+//     } else {
+//         next()
+//     }
+// })
 export default router
