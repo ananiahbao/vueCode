@@ -1,6 +1,6 @@
 <template>
   <div>
-      <tabbar></tabbar>
+      <tabbar v-show="computedShow"></tabbar>
       <router-view></router-view>
   </div>
 </template>
@@ -9,15 +9,38 @@
 // import child from '@/components/Child'
 // import swiper from '@/components/Swiper'
 import tabbar from '@/components/Tabbar.vue'
+import { mapState } from 'vuex'
+// import bus from '@/bus'
 export default {
     data () {
         return {
+            // ishow: true
         }
     },
     methods: {
     },
     components: {
         tabbar
+    },
+    // beforeMount () {
+    //     // 所有dom创建完成之前执行，不然刷新组件页面会看到底部栏
+    //     bus.$on('listen', (data) => {
+    //         this.ishow = data
+    //     })
+    // },
+    mounted () {
+    },
+    // vuex计算属性写法 --第一种写法
+    // computed: {
+    //     computedShow () {
+    //         return this.$store.state.444
+    //     }
+    // }
+    // vuex计算属性写法 --第二种写法
+    // computed: mapState(['computedShow'])  === {computedShow(){return fasle}}
+    // vuex计算属性写法 --第三种写法
+    computed: {
+        ...mapState(['computedShow'])
     }
 }
 </script>

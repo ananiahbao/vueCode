@@ -59,6 +59,7 @@
 <script>
 import axios from 'axios'
 import filmSwiper from './Detail/detailSwiper'
+// import bus from '@/bus'
 export default {
     data () {
         return {
@@ -81,6 +82,21 @@ export default {
             this.filmInfo = res.data.data.film
             console.log(res.data.data.film)
         })
+        window.onscroll = this.handleScroll
+
+        // 影藏底部栏
+        // bus.$emit('listen', false)
+        this.$store.commit('hideTbbarStateMutation', false)
+    },
+    methods: {
+        handleScroll () {
+            console.log(document.documentElement.scrollTop)
+        }
+    },
+    destroyed () {
+        // 显示底部栏
+        // bus.$emit('listen', true)
+        this.$store.commit('showTbbarStateMutation', true)
     }
 }
 </script>>
