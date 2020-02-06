@@ -6,6 +6,7 @@ import Comingsoon from '@/views/Filme/Comingsoon'
 import Detail from '@/views/Detail'
 import Cinema from '@/views/Cinema.vue'
 import Center from '@/views/Center.vue'
+import City from '@/views/City.vue'
 
 Vue.use(Router)
 
@@ -37,6 +38,10 @@ const routes = [
         // 别名
         alias: '/wode',
         component: Center
+    },
+    {
+        path: '/city',
+        component: City
     },
     {
         path: '*',

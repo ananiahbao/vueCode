@@ -73,7 +73,3 @@
                        window.onhashchange 监听路径的切换
     (2) history路由 ==> history.pushState 切换
                         window.onpopstate 监听路径切换
-### 移动端click事件300ms延迟
-    移动端web页面上的click事件都要响应都要慢上300ms
-    移动端设备访问web页面往往需要”双击“还是”单击“，Safari需要300ms的延迟来判断
-    解决办法：（1）设置meta viewport （2）fastclick库

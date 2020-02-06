@@ -59,6 +59,7 @@
 <script>
 import axios from 'axios'
 import filmSwiper from './Detail/detailSwiper'
+import { SHOW_TABBAR_MUTATION, HIDE_TABBAR_MUTATION } from '@/type'
 // import bus from '@/bus'
 export default {
     data () {
@@ -86,7 +87,7 @@ export default {
 
         // 影藏底部栏
         // bus.$emit('listen', false)
-        this.$store.commit('hideTbbarStateMutation', false)
+        this.$store.commit(HIDE_TABBAR_MUTATION, false)
     },
     methods: {
         handleScroll () {
@@ -96,7 +97,7 @@ export default {
     destroyed () {
         // 显示底部栏
         // bus.$emit('listen', true)
-        this.$store.commit('showTbbarStateMutation', true)
+        this.$store.commit(SHOW_TABBAR_MUTATION, true)
     }
 }
 </script>>

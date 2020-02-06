@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<script>
+    var ratio = window.devicePixelRatio;
+    var meta = document.querySelector("[name=viewport]")
+    meta.setAttribute('content',`width=device-width,initial-scale=${1/ratio},user-scalable=no`)
+
+    // 设计稿是多少这儿就是多少 750
+    document.documentElement.style.fontSize = window.innerWidth / 750 * 100 + 'px'
+</script>
+<style>
+*{
+    padding: 0;
+    margin: 0;
+}
+html{
+    font-size: 100px;
+}
+.box{
+    width: 7.5rem;
+    height: 1rem;
+    background-color: red;
+}
+</style>
+<body>
+    <div class="box">
+
+    </div>
+</body>
+</html>

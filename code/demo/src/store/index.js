@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import { SHOW_TABBAR_MUTATION, HIDE_TABBAR_MUTATION } from '@/type'
 
 Vue.use(Vuex)
 
@@ -12,12 +13,14 @@ export default new Vuex.Store({
     },
     mutations: {
         // state 是上面的共享状态 payload传过来的参数
-        hideTbbarStateMutation (state, payload) {
+        [SHOW_TABBAR_MUTATION] (state, payload) {
             // 显示tabbar
+            console.log(payload)
             state.isTabbarShow = payload
         },
-        showTbbarStateMutation (state, payload) {
+        [HIDE_TABBAR_MUTATION] (state, payload) {
             // 影藏tabbar
+            console.log(payload)
             state.isTabbarShow = payload
         },
         ComingSoonMutation (state, payload) {
@@ -42,5 +45,11 @@ export default new Vuex.Store({
         }
     },
     modules: {
+    },
+    getters: {
+        filterCoingSoonList (state) {
+            // 获取前五个
+            return state.comingSoonlist.filter((item, index) => index < 5)
+        }
     }
 })

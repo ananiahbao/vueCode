@@ -1,6 +1,6 @@
 <template>
   <div>
-      <tabbar v-show="computedShow"></tabbar>
+      <tabbar v-show="isTabbarShow"></tabbar>
       <router-view></router-view>
   </div>
 </template>
@@ -33,14 +33,14 @@ export default {
     // vuex计算属性写法 --第一种写法
     // computed: {
     //     computedShow () {
-    //         return this.$store.state.444
+    //         return this.$store.state.isTabbarShow
     //     }
     // }
     // vuex计算属性写法 --第二种写法
-    // computed: mapState(['computedShow'])  === {computedShow(){return fasle}}
+    // computed: mapState(['isTabbarShow'])     === {computedShow(){return fasle}}
     // vuex计算属性写法 --第三种写法
     computed: {
-        ...mapState(['computedShow'])
+        ...mapState(['isTabbarShow'])
     }
 }
 </script>

@@ -1,6 +1,9 @@
 <template>
   <div>
-      Center
+      <div>
+          支持手势
+          <v-touch @swiperLft="onSwipeLeft" tag="p">Swipe me!</v-touch>
+      </div>
   </div>
 </template>
 
@@ -16,6 +19,11 @@ export default {
             next()
         } else {
             next('/filem')
+        }
+    },
+    methods: {
+        onSwipeLeft () {
+            console.log('左滑')
         }
     }
 }

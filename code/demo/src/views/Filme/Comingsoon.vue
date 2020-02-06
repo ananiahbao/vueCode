@@ -11,7 +11,7 @@
 </template>>
 <script>
 import '@/filter/actorsFilter'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 export default {
     mounted () {
         if (this.comingSoonlist.length === 0) {
@@ -19,12 +19,14 @@ export default {
             this.$store.dispatch('getComingsoonAction', '传去参数')
         } else {
             console.log('使用缓存数据', this.comingSoonlist)
+            console.log('使用缓存数据getter', this.$store.getters.filterCoingSoonList)
         }
     },
     computed: {
-        ...mapState(['comingSoonlist'])
+        ...mapState(['comingSoonlist']),
+        ...mapGetters(['filterCoingSoonList'])
     },
-     methods: {
+    methods: {
         handleClick (id) {
             // 编程式路由导航
             // this.$router.push(`/details/id=${id}`)
